@@ -1,51 +1,16 @@
 import { useState, useEffect } from "react";
 import './styles.css'
 import { token } from '../../../helpers/getCookie';
+import { API_URL } from '../../../constants'
 
-const AddQuote = () => {
-  const [customers, setCustomers] = useState([]);
+const AddQuote = ({ customers = []}) => {
   const [selectedCustomer, setSelectedCustomer] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
 
   const [file, setFile] = useState(null);
-
-  const fetchCustomers = async () => {
-
-    try {
-
-      const response = await fetch(`https://spms-5gg3.onrender.com/list_users?query=${searchQuery}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer: ${token}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch customers');
-      }
-
-      const data = await response.json();
-      setCustomers(data.list);
-    } catch (error) {
-      console.error('Error fetching customers:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCustomers();
-  }, [searchQuery]);
 
   const handleCustomerSelect = (e) => {
     setSelectedCustomer(e.target.value);
   };
-
-  const handleKeyUp = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const filteredCustomers = customers.filter(
-    (customer) =>
-      customer.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
 
   const handleFileChange = (e) => {
@@ -59,7 +24,7 @@ const AddQuote = () => {
       const formData = new FormData();
       formData.append('uploaded_file', file);
 
-      const uploadResponse = await fetch('https://spms-5gg3.onrender.com/upload_file', {
+      const uploadResponse = await fetch(`${API_URL}/upload_file`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer: ${token}`,
@@ -73,7 +38,7 @@ const AddQuote = () => {
 
       const { file_url } = await uploadResponse.json();
 
-      const updateResponse = await fetch('https://spms-5gg3.onrender.com/create_quotation', {
+      const updateResponse = await fetch(`${API_URL}/create_quotation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,9 +68,9 @@ const AddQuote = () => {
     <div className="add-container">
       <h2>Add Quote</h2>
       <form className="add-quote-form" onSubmit={handleFileUpload} >
-        <select value={selectedCustomer} onChange={handleCustomerSelect} onKeyUp={handleKeyUp}>
+        <select value={selectedCustomer} onChange={handleCustomerSelect}>
           <option value="">Select Customer</option>
-          {filteredCustomers.map((customer) => (
+          {customers.map((customer) => (
             <option key={customer.id} value={customer.id}>
               {customer.name}
             </option>

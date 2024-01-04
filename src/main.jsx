@@ -4,10 +4,11 @@ import "./index.css";
 import { MyContextProvider } from "./MainContext";
 import App from './App'
 import { token } from "./helpers/getCookie";
+import  { API_URL } from './constants'
 
 const fetchUserSession = async (token) => {
   try {
-    const response = await fetch(`https://spms-5gg3.onrender.com/get_session?id=${token}`, {
+    const response = await fetch(`${API_URL}/get_session?id=${token}`, {
       method: "GET",
     });
 

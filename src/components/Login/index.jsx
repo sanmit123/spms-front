@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import setCookie from "../../helpers/setCookie";
 import './styles.css';
 import { MyContext }  from '../../MainContext'
-
+import { API_URL } from '../../constants'
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://spms-5gg3.onrender.com/login_user', {
+      const response = await fetch(`${API_URL}/login_user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
