@@ -7,7 +7,7 @@ import {token} from "./helpers/getCookie";
 
 const fetchUserSession = async (token) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/get_session?id=${token}`, {
+    const response = await fetch(`${https://spms-fvqd.onrender.com/}/get_session?id=${token}`, {
       method: "GET",
     });
 
