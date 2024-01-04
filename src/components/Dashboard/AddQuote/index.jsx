@@ -13,7 +13,7 @@ const AddQuote = () => {
 
     try {
 
-      const response = await fetch(`https://spms-fvqd.onrender.com/list_users?query=${searchQuery}`, {
+      const response = await fetch(`https://spms-5gg3.onrender.com/list_users?query=${searchQuery}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer: ${token}`,
@@ -59,7 +59,7 @@ const AddQuote = () => {
       const formData = new FormData();
       formData.append('uploaded_file', file);
 
-      const uploadResponse = await fetch('https://spms-fvqd.onrender.com/upload_file', {
+      const uploadResponse = await fetch('https://spms-5gg3.onrender.com/upload_file', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer: ${token}`,
@@ -73,7 +73,7 @@ const AddQuote = () => {
 
       const { file_url } = await uploadResponse.json();
 
-      const updateResponse = await fetch('https://spms-fvqd.onrender.com/create_quotation', {
+      const updateResponse = await fetch('https://spms-5gg3.onrender.com/create_quotation', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

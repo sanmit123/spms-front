@@ -29,7 +29,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://spms-fvqd.onrender.com/login_user', {
+      const response = await fetch('https://spms-5gg3.onrender.com/login_user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
