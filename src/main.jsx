@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom/client";
 import "./index.css";
 import { MyContextProvider } from "./MainContext";
 import App from './App'
-import {token} from "./helpers/getCookie";
+import { token } from "./helpers/getCookie";
 
 const fetchUserSession = async (token) => {
   try {
