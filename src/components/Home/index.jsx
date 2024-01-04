@@ -37,11 +37,11 @@ return (
         </section>
       </main> */}
 
-      {/* <footer className="footer">
+      <footer className="footer">
         <div className="container">
           <p>&copy; 2023 SPMS</p>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 }
